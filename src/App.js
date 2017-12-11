@@ -27,14 +27,16 @@ class App extends Component {
      .catch(error => {
        throw Error('ERROR: Fetching and Parsing Data', error);
      });
-  }
+   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header"></header>
-        <Search userAction={this.userAction}/>
-        <Gifs gifList={this.state.gifs}/>
+        <div className="header-container">
+          <header className="App-header">Search Your Favorite Gif!</header>
+          <Search userAction={this.userAction}/>
+        </div>
+          <Gifs gifList={this.state.gifs}/>
       </div>
     );
   }

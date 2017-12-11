@@ -1,12 +1,22 @@
-.gifs-list{
-  border: 1px solid red;
-}
-
-.col {
-  border: 2px solid blue;
-}
-
-.gif-container {
+.header-container {
   display: flex;
-  flex
+ flex-direction: column;
+ align-items: center;
+}
+
+.container {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.row {
+
+}
+
+.searchTerm{
+  font-size: 40px;
+}
+
+.searchButton{
+
 }
