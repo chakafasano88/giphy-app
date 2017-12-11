@@ -9,12 +9,12 @@ class Gif extends React.Component {
 
     return (
       <div className="container ">
-        <div className="row">
-          <div className='col'>
-            <a href="#" onClick={this.props.prevGif}>&laquo;</a>
-              <img id={this.props.imgId} src={this.props.gif} alt={this.props.alt} />
-            <a href="#" onClick={this.props.nextGif}>&raquo;</a>
-          </div>
+        <div className='col'>
+            <img id={this.props.imgId} src={this.props.gif} alt={this.props.alt} />
+        </div>
+        <div className="pagination">
+          <a href="#" className="next round" onClick={this.props.prevGif}>&laquo;</a>
+          <a href="#" className="previous round" onClick={this.props.nextGif}>&raquo;</a>
         </div>
       </div>
     );

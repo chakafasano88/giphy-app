@@ -34,9 +34,11 @@ class App extends Component {
       <div className="App">
         <div className="header-container">
           <header className="App-header">Search Your Favorite Gif!</header>
-          <Search userAction={this.userAction}/>
         </div>
-          <Gifs gifList={this.state.gifs}/>
+        <div className="gif-container">
+          <Gifs className="gifs" gifList={this.state.gifs}/>
+        </div>
+        <Search userAction={this.userAction}/>
       </div>
     );
   }

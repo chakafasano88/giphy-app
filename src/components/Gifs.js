@@ -13,33 +13,38 @@ class Gifs extends React.Component {
   }
 
   componentDidUpdate() {
-    console.log('hi');
     const { gifList } = this.props
     const {gifIndex, gifImage} = this.state;
+    
     if (gifList[0] && gifList[0].images.fixed_height.url !== gifImage && gifIndex === 0) {
-      this.setState({gifImage: gifList[0].images.fixed_height.url})
-    }
+      this.setState({
+        gifImage: gifList[0].images.fixed_height.url
+      });
+    };
   }
 
    prevGif(event) {
      const { gifList } = this.props;
      let { gifIndex } = this.state;
-    if(gifIndex > 0) {
-      this.setState({gifIndex: gifIndex - 1})
-      // document.getElementById('gifContainer').src = gifList[gifIndex - 1].images.fixed_height.url
-    }
+
+     if(gifIndex > 0) {
+      this.setState({
+        gifIndex: gifIndex - 1
+      });
+     }
     return false;
   }
 
    nextGif(event) {
-    console.log('next', event);
     const { gifList } = this.props;
     let { gifIndex } = this.state;
-   if(gifIndex < gifList.length) {
-     this.setState({gifIndex: gifIndex + 1})
+
+    if(gifIndex < gifList.length) {
+     this.setState({gifIndex:
+        gifIndex + 1
+      });
      this.state.gifImage = gifList[gifIndex + 1].images.fixed_height.url;
-     // document.getElementById('gifContainer').src = gifList[gifIndex + 1].images.fixed_height.url
-   }
+    }
    return false;
   }
 
