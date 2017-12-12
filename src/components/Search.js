@@ -6,7 +6,7 @@ class Search extends React.Component {
     query: ''
   }
 
-  _onChange = e => {
+  _onChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value
@@ -23,21 +23,24 @@ class Search extends React.Component {
        onSearch(response.data.data);
      })
      .catch(error => {
-       onError(error.message);
+       onError(error.response);
+       console.log(error);
      });
    }
 
   render() {
     return (
       // Search bar which communicates with giphy API
-      <div className="wrap">
-        <div className="search">
-          <form onSubmit={this._onSubmit}>
-            <input type="text" name='query' onChange={this._onChange} className="searchTerm" placeholder="What are you looking for?" />
-            <button type="submit" className="searchButton">
-              <i className="fa fa-search"></i>
-            </button>
-          </form>
+      <div className="search-container">
+        <div className="wrap">
+          <div className="search">
+            <form onSubmit={this._onSubmit}>
+              <input type="text" name='query' onChange={this._onChange} className="searchTerm" placeholder="What are you looking for?" />
+              <button type="submit" className="searchButton">
+                <i className="fa fa-search"></i>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     );

@@ -9,12 +9,16 @@ class App extends Component {
     this.state = {
       gifs: [],
       hasError: false,
-      errorMessage: ''
+      errorMessage: '',
     };
   }
 
+
   _onSearch = (gifs) => this.setState({ gifs });
-  _onError = (message) => this.setState({ hasError: true, errorMessage: message });
+  _onError = (message) => this.setState({
+    hasError: true,
+    errorMessage: message
+  });
 
   render() {
     const { hasError, errorMessage } = this.state;
@@ -28,10 +32,8 @@ class App extends Component {
           <h3>An error occurred!</h3>
           {errorMessage}
         </div>
-        <div className="gif-container">
-          <Gifs className="gifs" gifList={this.state.gifs}/>
-        </div>
-        <Search onSearch={this._onSearch} onError={this._onError} />
+        <Search onSearch={this._onSearch} onError={this._onError} accessPagination={this.accessPagination} />
+        <Gifs className="gifs" gifList={this.state.gifs}/>
       </div>
     );
   }
