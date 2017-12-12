@@ -15,7 +15,7 @@ class Gifs extends React.Component {
   componentDidUpdate() {
     const { gifList } = this.props
     const {gifIndex, gifImage} = this.state;
-    
+
     if (gifList[0] && gifList[0].images.fixed_height.url !== gifImage && gifIndex === 0) {
       this.setState({
         gifImage: gifList[0].images.fixed_height.url
@@ -44,19 +44,13 @@ class Gifs extends React.Component {
         gifIndex + 1
       });
      this.state.gifImage = gifList[gifIndex + 1].images.fixed_height.url;
-    }
-   return false;
+   }
+   return false
   }
-
 
   render(){
     // Accesses the newly rendered gifs state in App.js
     const { gifList } = this.props
-
-
-    //let show = gifs.map(gif => {
-    //});
-
     return(
       <div className="container">
         <div>
@@ -72,8 +66,6 @@ class Gifs extends React.Component {
                   gif={this.state.gifImage} />
               : ''
             }
-
-
         </div>
       </div>
     );
