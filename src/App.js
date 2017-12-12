@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Gifs from './components/Gifs';
 import Search from './components/Search';
-import axios from 'axios';
 import './App.css';
 
 class App extends Component {
@@ -9,37 +8,30 @@ class App extends Component {
     super();
     this.state = {
       gifs: [],
+      hasError: false,
+      errorMessage: ''
     };
-    this.userAction = this.userAction.bind(this)
   }
 
-  // Calls a giphy URL using Giphy's API according to input value
-  userAction() {
-    const input = document.querySelector('.searchTerm')
-    const query = `&q=${input.value}`
-
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
-     .then(response => {
-       this.setState({
-         gifs: response.data.data,
-       });
-     })
-     .catch(error => {
-       throw Error('ERROR: Fetching and Parsing Data', error)
-       console.log('error');;
-     });
-   }
+  _onSearch = (gifs) => this.setState({ gifs });
+  _onError = (message) => this.setState({ hasError: true, errorMessage: message });
 
   render() {
+    const { hasError, errorMessage } = this.state;
+    const errorDisplay = hasError ? 'block' : 'none';
     return (
       <div className="App">
         <div className="header-container">
           <header className="App-header">Search Your Favorite Gif!</header>
         </div>
+        <div style={{ display: errorDisplay }} className='error'>
+          <h3>An error occurred!</h3>
+          {errorMessage}
+        </div>
         <div className="gif-container">
           <Gifs className="gifs" gifList={this.state.gifs}/>
         </div>
-        <Search userAction={this.userAction}/>
+        <Search onSearch={this._onSearch} onError={this._onError} />
       </div>
     );
   }
