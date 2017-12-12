@@ -11,7 +11,7 @@ class Gifs extends React.Component {
     this.prevGif = this.prevGif.bind(this)
     this.nextGif = this.nextGif.bind(this)
   }
-
+// Updates the component state displaying the first item in the gif array
   componentDidUpdate() {
     const { gifList } = this.props
     const {gifIndex, gifImage} = this.state;
@@ -44,12 +44,11 @@ class Gifs extends React.Component {
         gifIndex + 1
       });
      this.state.gifImage = gifList[gifIndex + 1].images.fixed_height.url;
+    }
+    return false
    }
-   return false
-  }
 
   render(){
-    // Accesses the newly rendered gifs state in App.js
     const { gifList } = this.props
     return(
       <div className="container">

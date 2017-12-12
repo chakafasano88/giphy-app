@@ -13,7 +13,7 @@ class App extends Component {
     this.userAction = this.userAction.bind(this)
   }
 
-  // Calls a giph URL according to input value
+  // Calls a giphy URL using Giphy's API according to input value
   userAction() {
     const input = document.querySelector('.searchTerm')
     const query = `&q=${input.value}`
@@ -25,7 +25,8 @@ class App extends Component {
        });
      })
      .catch(error => {
-       throw Error('ERROR: Fetching and Parsing Data', error);
+       throw Error('ERROR: Fetching and Parsing Data', error)
+       console.log('error');;
      });
    }
 

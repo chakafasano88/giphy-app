@@ -1,13 +1,9 @@
 import React from 'react';
 
 class Gif extends React.Component {
-  constructor(){
-    super()
-  }
-
   render(){
-
     return (
+      // Returns gif images via props
       <div className="container ">
         <div className='col'>
             <img id={this.props.imgId} src={this.props.gif} alt={this.props.alt} />

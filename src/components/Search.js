@@ -1,9 +1,9 @@
 import React from 'react';
 
 class Search extends React.Component {
-
   render() {
     return (
+      // Search bar which communicates with giphy API
       <div className="wrap">
         <div className="search">
           <input type="text" className="searchTerm" placeholder="What are you looking for?" />
