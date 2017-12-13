@@ -29,11 +29,18 @@ class App extends Component {
           <header className="App-header">Search Your Favorite Gif!</header>
         </div>
         <div style={{ display: errorDisplay }} className='error'>
-          <h3>An error occurred!</h3>
+          <div className="close"><a onClick={this.closeModal = () => {this.setState({hasError: false})}}>&times;</a></div>
+          <h2 id="error-message">No Gif Found!</h2>
           {errorMessage}
         </div>
-        <Search onSearch={this._onSearch} onError={this._onError} accessPagination={this.accessPagination} />
-        <Gifs className="gifs" gifList={this.state.gifs}/>
+
+        <div className="search-gif-container">
+          <Search
+            onSearch={this._onSearch}
+            onError={this._onError}
+          />
+          <Gifs className="gifs" gifList={this.state.gifs}/>
+        </div>
       </div>
     );
   }

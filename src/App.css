@@ -7,7 +7,8 @@ body{
 
 .App {
   width: 100%;
-  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
 }
 
 .error {
@@ -16,11 +17,32 @@ body{
   background-color: white;
   font-size: 20px;
   color: black;
+  z-index: 999;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 2px 2px 4px 0 #ccc;
+  text-align: center;
+}
+
+#error-message {
+  margin-top: 25%;
+}
+
+.close {
+  float: right;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0 10px 0 0;
 }
 
 .search {
   width: 100%;
-  position: relative
+  position: relative;
 }
 
 .searchTerm {
@@ -53,12 +75,11 @@ body{
 }
 
 .search-container {
-  width: 78.3%;
-  height: 60px;
-  margin-left: 12%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  background-color: red;
+  height: 60px;
+  background-color: white;
   padding: 12px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -77,6 +98,7 @@ body{
   justify-content: center;
   padding: 50px;
   font-size: 35px;
+  text-align: center;
 }
 
 .container {

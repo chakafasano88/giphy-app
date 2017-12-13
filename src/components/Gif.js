@@ -2,11 +2,6 @@ import React from 'react';
 
 class Gif extends React.Component {
 
-
-  componentDidMount(){
-    console.log(this.props.gifList.id);
-  }
-
   render(){
     return (
       // Returns gif images via props

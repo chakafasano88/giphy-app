@@ -23,8 +23,7 @@ class Search extends React.Component {
        onSearch(response.data.data);
      })
      .catch(error => {
-       onError(error.response);
-       console.log(error);
+         onError(error.data)
      });
    }
 
