@@ -18,13 +18,13 @@ class Search extends React.Component {
     const { query } = this.state;
     const { onError, onSearch } = this.props;
 
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
-     .then(response => {
-       onSearch(response.data.data);
-     })
-     .catch(error => {
-         onError(error.data)
-     });
+      axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
+       .then(response => {
+         onSearch(response.data.data);
+       })
+       .catch(error => {
+           onError(error.response)
+       });
    }
 
   render() {

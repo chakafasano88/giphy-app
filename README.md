@@ -5,6 +5,10 @@ You can find the most recent version of this guide [here](https://github.com/fac
 
 A simple react app for searching your favorite gifs !
 
-Clone the repository here: https://github.com/chakafasano88/giphy-app.git
+To run the App locally in cmd line:
 
-Run the application locally by typing npm start in the terminal.
+git clone: https://github.com/chakafasano88/giphy-app.git
+cd gihpy-search
+npm install
+npm start to initialize
+open  http://localhost:3000
