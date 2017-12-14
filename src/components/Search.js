@@ -16,22 +16,25 @@ class Search extends React.Component {
     })
   }
 
-  _fetchData = () => {
+// Displays a new set of giffys based on initial search
+  _fetchNextPage = () => {
+    const { paginate, limit, query } = this.state
+    this.setState({
+      paginate: paginate + limit
+    }, () => this._queryOffset());
+  }
+
+  _queryOffset = () => {
     const { query, paginate, limit } = this.state;
     const { onError, onSearch } = this.props;
 
     axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&offset=${paginate}&limit=${limit}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
      .then(response => {
        onSearch(response.data.data);
-    })
+    }).catch(error => {
+        onError(error.response)
+      });
    }
-
-  _fetchNextPage = () => {
-    const { paginate, limit, query } = this.state
-    this.setState({
-      paginate: paginate + limit
-    }, () => this._fetchData());
-  }
 
 // Prints gifs based on query
   _onSubmit = (e) => {

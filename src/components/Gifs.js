@@ -2,6 +2,7 @@ import React from 'react';
 import Gif from './Gif';
 
 class Gifs extends React.Component {
+  // Renders the gif data objects
    renderList = () => {
      const { gifList } = this.props
       if(gifList <= 0){
