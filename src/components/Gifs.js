@@ -2,27 +2,23 @@ import React from 'react';
 import Gif from './Gif';
 
 class Gifs extends React.Component {
+   renderList = () => {
+     const { gifList } = this.props
+      if(gifList <= 0){
+        return <div className="no-gif-msg"> <h2> No Gifs, Search To Find More Gifs!</h2> </div>
+      }
+      return(gifList.map(gif => <Gif key={gif.id} gifList={gifList} gif={gif.images.fixed_height.url} />))
+  }
 
   render(){
-    // This accesses state in App.js
-  const { gifList } = this.props
-
-  let show = gifList.map(gif => {
-       return <Gif
-         key={gif.id}
-         gifList={gifList}
-         gif={gif.images.fixed_height.url}
-       />
-     });
-
-    return(
-      <div className="container">
-        <div>
-          { show }
+      return(
+        <div className="container">
+          <div>
+            { this.renderList() }
+          </div>
         </div>
-      </div>
-    );
-  }
-};
+      );
+    }
+  };
 
 export default Gifs;
