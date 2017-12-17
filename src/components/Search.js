@@ -5,8 +5,8 @@ import axios from 'axios';
 class Search extends React.Component {
   state = {
     query: '',
-    paginate: 25,
-    limit: 25
+    pagination: {},
+    limit: 48
   }
 
   _onChange = (e) => {
@@ -16,40 +16,54 @@ class Search extends React.Component {
     })
   }
 
-// Displays a new set of giffys based on initial search
-  _fetchNextPage = () => {
-    const { paginate, limit, query } = this.state
+  _handleResponse = (response) => {
+    const { onSearch } = this.props;
+    const pagination = response.data.pagination;
     this.setState({
-      paginate: paginate + limit
-    }, () => this._queryOffset());
+      pagination
+    });
+    const gifs = response.data.data
+    onSearch(gifs);
   }
 
-  _queryOffset = () => {
-    const { query, paginate, limit } = this.state;
-    const { onError, onSearch } = this.props;
+  _giphyQuery = () => {
+    const { query, pagination, limit } = this.state;
+    const { onError } = this.props;
 
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&offset=${paginate}&limit=${limit}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
-     .then(response => {
-       onSearch(response.data.data);
-    }).catch(error => {
+    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&offset=${pagination.offset}&limit=${limit}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
+      .then(response => {
+        this._handleResponse(response);
+      })
+      .catch(error => {
         onError(error.response)
       });
-   }
+  }
+
+  _fetchNextPage = () => {
+    const { pagination, limit } = this.state;
+    this.setState({
+      pagination: {...pagination, offset: pagination.offset + limit}
+    }, () => {
+      this._giphyQuery();
+    })
+  }
 
 // Prints gifs based on query
   _onSubmit = (e) => {
     e.preventDefault();
-    const { query } = this.state;
-    const { onError, onSearch } = this.props;
 
-    axios.get(`http://api.giphy.com/v1/gifs/search?q=${query}&api_key=q7kTB0TwzgVggIoYvFUcT97sfeuEIL53`)
-     .then(response => {
-       onSearch(response.data.data);
-     })
-     .catch(error => {
-        onError(error.response)
-     });
-   }
+    const pagination = {
+      offset: 0,
+      total_count: 0,
+      count: 0
+    }
+
+    this.setState({
+      pagination
+    }, () => {
+      this._giphyQuery();
+    });
+  }
 
   render() {
     return (
